@@ -70,7 +70,7 @@ describe PidFile do
   end
 
   it 'should know if a process exists or not - Class method' do
-    expect(PidFile.running?( File.join(PID_DIR, PID_FILE)     )).to be true
+    expect(PidFile.running?( File.join(PID_DIR, PID_FILE) )).to be true
     expect(PidFile.running?( File.join(PID_DIR, ALT_PID_FILE) )).to be false
   end
 
