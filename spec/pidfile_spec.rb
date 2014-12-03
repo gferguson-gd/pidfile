@@ -75,10 +75,18 @@ describe PidFile do
   end
 
   it 'should know if it is running - Class method' do
+    # screw with the defaults...
+    old_pidfile = PidFile::DEFAULT_OPTIONS[:pidfile]
+    PidFile::DEFAULT_OPTIONS[:piddir] = PID_DIR
+    PidFile::DEFAULT_OPTIONS[:pidfile] = ALT_PID_FILE
+
     pf = PidFile.new
     expect(PidFile.running?).to be true
     pf.release
     expect(PidFile.running?).to be false
+
+    # unscrew with the defaults...
+    PidFile::DEFAULT_OPTIONS[:pidfile] = old_pidfile
   end
 
   it 'should know if it is alive or not' do

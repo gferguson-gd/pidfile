@@ -48,8 +48,6 @@ class PidFile
     create_pidfile
 
     at_exit {
-
-    require 'byebug'; debugger
       release 
     }
   end
