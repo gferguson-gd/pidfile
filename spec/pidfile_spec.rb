@@ -6,7 +6,10 @@ ALT_PID_FILE = 'foo.pid'
 
 describe PidFile do
   before(:each) do
-    @pidfile = PidFile.new(:piddir => PID_DIR)
+    PidFile::DEFAULT_OPTIONS[:piddir] = PID_DIR
+
+    require 'byebug'; debugger
+    @pidfile = PidFile.new
   end
 
   after(:each) do
