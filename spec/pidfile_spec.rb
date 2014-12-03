@@ -29,7 +29,7 @@ describe PidFile do
 
     fakepid = 99999999 # absurd number
     File.write(@pidfile.pidpath, fakepid)
-    pf = PidFile.new(:piddir => PID_DIR)
+    pf = PidFile.new
 
     expect(PidFile.pid(pf.pidpath)).to eq(Process.pid)
     expect(pf).to be_an_instance_of(PidFile)
@@ -66,7 +66,7 @@ describe PidFile do
   end
 
   it 'should raise an error if a pidfile already exists' do
-    expect(lambda { PidFile.new(:pidfile => PID_FILE) }).to raise_error
+    expect(lambda { PidFile.new }).to raise_error
   end
 
   it 'should know if a process exists or not - Class method' do
@@ -75,7 +75,7 @@ describe PidFile do
   end
 
   it 'should know if it is running - Class method' do
-    pf = PidFile.new()
+    pf = PidFile.new
     expect(PidFile.running?).to be true
     pf.release
     expect(PidFile.running?).to be false
